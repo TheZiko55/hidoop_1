@@ -9,7 +9,6 @@ import java.rmi.server.UnicastRemoteObject;
 import formats.Format;
 import map.Mapper;
 import map.Reducer;
-import map.MapReduce;
 
 public class DaemonImplement extends UnicastRemoteObject implements Daemon {
 
@@ -52,8 +51,7 @@ public class DaemonImplement extends UnicastRemoteObject implements Daemon {
 							
 				ServerName = args[0];
 				DaemonImplement Daemon = new DaemonImplement(ServerName);
-				String url = "//" + InetAddress.getLocalHost().getHostAddress() + ":" + ports + "/" + ServerName ;
-				Naming.rebind(url,Daemon);
+				Naming.rebind("//" + InetAddress.getLocalHost().getHostAddress() + ":" + ports + "/" + ServerName,Daemon);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
